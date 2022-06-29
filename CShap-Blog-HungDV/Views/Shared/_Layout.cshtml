@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Management</title>
+    <link rel="stylesheet" href="~/Content/main.css" type="text/css" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="Header">
+        <div class="headerLogo">
+            <img class="imgLogo" src="~/assets/img/devfast-logo.png" alt="Logo">
+        </div>
+        <div class="HeaderContent">
+            Blogmanagement
+        </div>
+    </div>
+    <div id="index-Body">
+        <div id="App-Menu">
+            <div class="Menu-contairner">
+                <a href="/Blog/BlogList" class="menu-item">
+                    <div class="menu-item-contairner">
+                        <div class="menu-item-content">List</div>
+                    </div>
+                </a>
+                <a href="/Blog/BlogCreateEdit/0" class="menu-item">
+                    <div class="menu-item-contairner">
+                        <div class="menu-item-content">New</div>
+                    </div>
+                </a>
+                <a class="menu-item">
+                    <div class="menu-item-contairner">
+                        <div class="menu-item-content">Search</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div id="main">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="Footer">
+        <div class="Footer-content">
+            Copyright © 2021
+        </div>
+        <a class="linkDevFast" href="https://devfast.us/">DevFast</a>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

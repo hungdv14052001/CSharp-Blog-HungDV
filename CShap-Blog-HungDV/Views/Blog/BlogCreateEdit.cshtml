@@ -1,0 +1,81 @@
+﻿@using CShap_Blog_HungDV.Models
+@model CShap_Blog_HungDV.Models.Blog
+
+@{
+    ViewBag.Title = "BlogCreateEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentBlog = ViewData["blog"] as Blog;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div id="CreateEdit">
+        <div class="CreateEdit-header">
+            <div class="CreateEdit-title">News Blog</div>
+        </div>
+        <div class="CreateEdit-contairner">
+            <label for="" class="lb">Tiêu đề: </label>
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "txtTieuDe" } })
+            <label for="" class="lb">Mô tả ngắn:</label>
+            @Html.EditorFor(model => model.Des, new { htmlAttributes = new { @class = "txtMota" } })
+            <label for="" class="lb">Chi tiết:</label>
+            @Html.EditorFor(model => model.Detail, new { htmlAttributes = new { @class = "txtChitiet" } })
+            <label for="" class="lb">Hình ảnh:</label>
+            <div class="txtTieuDe">
+                <input type="file" class="input-file" name="myfile">
+            </div>
+            <label for="" class="lb">Vị trí:</label>
+            <div class="txtTieuDe">
+                @foreach (Postion postion in ViewData["listPostion"] as List<Postion>)
+                {
+                    @Html.CheckBoxFor(model => model.Position[postion.Id - 1])<label>@postion.Name</label>
+                }
+
+            </div>
+            <label for="" class="lb">Public:</label>
+            <div class="txtTieuDe">
+                @Html.RadioButtonFor(model => model.IsPublic, "True", new { @class = "cbLocation" })
+                Yes
+                @Html.RadioButtonFor(model => model.IsPublic, "False", new { @class = "cbLocation" })
+                No
+            </div>
+            <div class="type-contairner">
+                <div class="type-item">
+                    <label>Loại:</label>
+                </div>
+                <div class="type-item">
+                    <label>Date Public:</label>
+                </div>
+            </div>
+            <div class="type-contairner">
+                <div class="type-item">
+                    @Html.DropDownListFor(model => model.Category, ViewBag.selectList as List<SelectListItem>, new { @class = "txtType" })
+                </div>
+                <div class="type-item">
+                    @Html.TextBoxFor(model => model.DatePublic, new { placeholder = "yyyy/MM/dd", @class = "txtType datepicker" })
+                </div>
+            </div>
+        </div>
+        <div class="footer-CreateEdit">
+            <input type="submit" value="Submit" class="btnSubmit" />
+            <button type="button" class="btnClear">Clear</button>
+        </div>
+
+    </div>
+}
+
+@functions{
+    bool getSelected(int id)
+    {
+        var currentBlog = ViewData["blog"] as Blog;
+        if (id == currentBlog.Category)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+

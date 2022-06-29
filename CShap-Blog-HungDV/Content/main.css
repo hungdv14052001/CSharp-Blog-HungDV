@@ -1,0 +1,390 @@
+﻿/*Header*/
+#Header {
+    height: 60px;
+    width: 100%;
+    background-color: #201E1E;
+    display: flex;
+    justify-content: center;
+}
+
+.headerLogo {
+    width: 17%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.imgLogo {
+    height: 100%;
+}
+
+.HeaderContent {
+    width: 83%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 23px;
+    font-family: Arial;
+}
+/*Menu*/
+#App-Menu {
+    width: 17%;
+    min-height: 100%;
+}
+
+.Menu-contairner {
+    width: 100%;
+}
+
+.menu-item {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    color: black;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    background-color: #ccc;
+    color: black;
+    text-decoration: none;
+}
+
+.menu-item-contairner {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item-contairner:hover {
+    cursor: pointer;
+}
+
+.menu-item-content {
+    font-family: Arial;
+    font-size: 17px;
+    width: 60px;
+    padding-left: 20px;
+}
+/*Footer*/
+#Footer {
+    width: 100%;
+    height: 60px;
+    background-color: #494E53;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+}
+
+.Footer-content {
+    width: 150px;
+    color: white;
+}
+
+.linkDevFast {
+    color: #007BFF;
+    text-decoration: none;
+}
+/**/
+#List {
+    width: 97%;
+    margin-left: 1.5%;
+    background-color: white;
+    border-radius: 5px;
+    min-height: 700px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#Search {
+    width: 97%;
+    margin-left: 1.5%;
+    background-color: white;
+    border-radius: 5px;
+    min-height: 150px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.list-header {
+    width: 100%;
+    height: 45px;
+    background-color: #F0F3F5;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.list-title {
+    font-size: 17px;
+    color: black;
+    font-family: Arial;
+    margin-left: 7px;
+    font-weight: bold;
+}
+
+.list-Blogs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.title-row {
+    width: 100%;
+    display: flex;
+    height: 35px;
+    margin-bottom: 2px;
+}
+
+.data-row {
+    width: 100%;
+    display: flex;
+    height: 40px;
+}
+
+.data-id, .title-id, .title-Tin, .title-type, .title-status, .title-location, .title-date_public, .title-edit, .title-delete {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.data-Tin, .data-type, .data-status, .data-location, .data-date_public, .data-edit, .data-delete {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title-id, .data-id {
+    width: 4%;
+}
+
+.data-Tin {
+    text-align: center;
+}
+
+.title-Tin, .data-Tin {
+    width: 30%;
+}
+
+.title-type, .title-status, .title-edit, .data-type, .data-status, .data-edit {
+    width: 8%;
+}
+
+.title-location, .data-location {
+    width: 26%;
+}
+
+.title-date_public, .data-date_public {
+    width: 10%;
+}
+
+.title-delete, .data-delete {
+    width: 8%;
+}
+
+.btn-Edit {
+    background-color: white;
+    color: #28A745;
+    border: 1px solid #28A745;
+    border-radius: 3px;
+    padding: 2px 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-Delete {
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+    border-radius: 3px;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.Data-listBlog{
+    margin:0;
+    padding:0;
+}
+/*CreateEdit*/
+#CreateEdit {
+    width: 97%;
+    margin-left: 1.5%;
+    background-color: white;
+    border-radius: 5px;
+    min-height: 700px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.CreateEdit-header {
+    width: 100%;
+    height: 45px;
+    background-color: #F0F3F5;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.CreateEdit-title {
+    font-size: 17px;
+    color: black;
+    font-family: Arial;
+    margin-left: 7px;
+    font-weight: bold;
+}
+
+.lb {
+    width: 96%;
+    height: 30px;
+    margin-left: 2%;
+    margin-top: 10px;
+}
+
+.txtTieuDe {
+    height: 25px;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+
+.txtMota {
+    height: 75px;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.txtChitiet {
+    height: 150px;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.cbLocation {
+    margin-left: 15px;
+}
+
+.type-contairner {
+    display: flex;
+    width: 100%;
+}
+
+.type-item {
+    width: 47%;
+    margin-left: 2%;
+}
+
+.txtType {
+    height: 25px;
+    width: 96%;
+    padding: 0 2%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+
+.footer-CreateEdit {
+    margin-top: 25px;
+    height: 65px;
+    width: 100%;
+    background-color: #F0F3F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.btnSubmit, .btnClear {
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    margin: 0 5px;
+    padding: 0 15px;
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.btnSubmit {
+    background-color: #28A745;
+    text-decoration: none;
+}
+
+.btnClear {
+    background-color: #007BFF;
+}
+/*SearchForm*/
+.input-search-contairner {
+    width: 96%;
+    height: 75px;
+    margin-left: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lb-search {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-search {
+    height: 30px;
+    width: 90%;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0 1%;
+}
+
+.button-search-contairner {
+    width: 96%;
+    margin-left: 2%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnSearch {
+    height: 35px;
+    width: 70px;
+    background-color: white;
+    color: #28A745;
+    border: 1px solid #28A745;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/*Body*/
+#main {
+    width: 83%;
+    min-height: 700px;
+    background-color: #E4E5E6;
+}
+
+#index-Body {
+    display: flex;
+}
