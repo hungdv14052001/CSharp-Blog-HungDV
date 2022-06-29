@@ -87,7 +87,7 @@
                         @Html.ActionLink("Edit", "BlogCreateEdit", null, new { id = blog.Id }, new { @class = "btn-Edit" })
                     </div>
                     <div class="data-delete">
-                        <asp:Button runat="server" Text="Button" class="btn-Delete">Delete</asp:Button>
+                        @Html.ActionLink("Delete", "BlogDelete", new { id = blog.Id }, new { @class = "btn-Delete" })
                     </div>
                 </li>
             }
