@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Component\ListBlogComponent.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="dao\DAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -127,7 +128,7 @@
     </Compile>
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\KeySearch.cs" />
+    <Compile Include="Models\EnumList.cs" />
     <Compile Include="Models\Postion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -209,9 +210,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Blog\BlogList.cshtml" />
     <Content Include="Views\Blog\BlogCreateEdit.cshtml" />
     <Content Include="Views\Blog\BlogSearch.cshtml" />
+    <Content Include="Views\Blog\tblBlog.cshtml" />
+    <Content Include="Views\Blog\BlogList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

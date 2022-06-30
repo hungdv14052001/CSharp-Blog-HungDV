@@ -26,9 +26,9 @@ namespace CShap_Blog_HungDV.dao
         }
 
         /// <summary>
-        /// 
+        /// get all Blog in DataBase
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List<Blog></returns>
         public List<Blog> getListBlog()
         {
             List<Blog> listBlog = new List<Blog>();
@@ -55,8 +55,9 @@ namespace CShap_Blog_HungDV.dao
         }
 
         /// <summary>
-        /// 
+        /// get all Blog in DataBase with title of Blog contains keySearch
         /// </summary>
+        /// <param name="keySearch"></param>
         /// <returns></returns>
         public List<Blog> getListBlogByKeySearch(string keySearch)
         {
@@ -85,8 +86,19 @@ namespace CShap_Blog_HungDV.dao
             }
             return listBlog;
         }
+
         /// <summary>
-        /// function add Blog into DataBase
+        /// get Blog from DataBase by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Blog</returns>
+        public Blog getBlogById(int id)
+        {
+            return this.getListBlog().Where(blog => blog.Id == id).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// add Blog into DataBase
         /// </summary>
         /// <param name="blog"></param>
         /// <returns>bool</returns>
@@ -105,8 +117,9 @@ namespace CShap_Blog_HungDV.dao
                 return false;
             }
         }
+
         /// <summary>
-        /// function update Blog in DataBase
+        /// update Blog in DataBase
         /// </summary>
         /// <param name="blog"></param>
         /// <returns>bool</returns>
@@ -126,8 +139,9 @@ namespace CShap_Blog_HungDV.dao
                 return false;
             }
         }
+
         /// <summary>
-        /// function delete Blog from DataBase
+        /// delete Blog from DataBase
         /// </summary>
         /// <param name="blog"></param>
         /// <returns>bool</returns>
@@ -146,10 +160,33 @@ namespace CShap_Blog_HungDV.dao
                 return false;
             }
         }
+
         /// <summary>
-        /// 
+        /// delete Blog from Database by Id
         /// </summary>
-        /// <returns></returns>
+        /// <param name="id"></param>
+        /// <returns>bool</returns>
+        public bool deleteBlogById(int id)
+        {
+            try
+            {
+                command = connection.CreateCommand();
+                command.CommandText = "delete from tblBlog " +
+                    "where id= " + id;
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// get List Position from string of list Positiono
+        /// </summary>
+        /// <param name="stringOfPosition"></param>
+        /// <returns>List<bool></returns>
         public List<bool> getPosition(string stringOfPosition)
         {
             List<bool> listResult = new List<bool> { false, false, false, false};
@@ -161,33 +198,34 @@ namespace CShap_Blog_HungDV.dao
         }
 
         /// <summary>
-        /// 
+        /// get string of list Position
         /// </summary>
         /// <param name="listPosition"></param>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public string getPosition(List<bool> listPosition)
         {
+            string result = "";
             List<int> listPositionByInt = new List<int>();
             for (int i=0; i<4; i++)
             {
                 if (listPosition[i])
                 {
                     listPositionByInt.Add(i + 1);
+                    if (i > 0)
+                    {
+                        result += "," + listPositionByInt[i].ToString();
+                    }
                 }
             }
-            string result = "";
-            result += listPositionByInt[0];
-            for (int i= 1; i< listPositionByInt.Count; i++)
-            {
-                result += ","+listPositionByInt[i].ToString();
-            }
+            result = listPositionByInt[0]+result;
             return result;
         }
+
         /// <summary>
-        /// 
+        /// get Date of Blog from string
         /// </summary>
         /// <param name="date"></param>
-        /// <returns></returns>
+        /// <returns>DateTime</returns>
         private DateTime getDate(string date)
         {
             string[] time = date.Split('/', ' ', ':');

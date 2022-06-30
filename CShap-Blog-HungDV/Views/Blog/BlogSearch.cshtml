@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("BlogSearch", "Blog" ,FormMethod.Get))
+@using (Html.BeginForm("BlogSearch", "Blog", FormMethod.Get))
 {
     <div id="Search">
         <div class="list-header">
@@ -14,134 +14,13 @@
         </div>
         <div class="input-search-contairner">
             <label class="lb-search">Title: </label>
-            <input placeholder = "Title" class="input-search" value="@ViewBag.key" name="keySearch"/>
+            <input placeholder="Title" class="input-search" value="@ViewBag.key" name="keySearch" />
         </div>
         <div class="button-search-contairner">
             <input type="submit" value="Search" class="btnSearch" />
         </div>
     </div>
+    @Html.Partial("tblBlog")
 }
-<div id="List">
-    <div class="list-header">
-        <div class="list-title">List Blog</div>
-    </div>
-    <div id="listBlog">
-        <div class="title-row">
-            <div class="title-id">
-                id
-            </div>
-            <div class="title-Tin">
-                Tin
-            </div>
-            <div class="title-type">
-                Loại
-            </div>
-            <div class="title-status">
-                Trạng thái
-            </div>
-            <div class="title-location">
-                Vị trí
-            </div>
-            <div class="title-date_public">
-                Ngày Public
-            </div>
-            <div class="title-edit">
-                Edit
-            </div>
-            <div class="title-delete">
-                Delete
-            </div>
-        </div>
-        <ul class="list-Blogs">
-            @foreach (Blog blog in Model)
-            {
-                <li class="data-row">
-                    <div class="data-id">
-                        @blog.Id
-                    </div>
-                    <div class="data-Tin">
-                        @blog.Title
-                    </div>
-                    <div class="data-type">
-                        @getCategory(blog.Category)
-                    </div>
-                    @if (blog.IsPublic)
-                    {
-                        <div class="data-status">
-                            Yes
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="data-status">
-                            No
-                        </div>
-                    }
-                    <div class="data-location">
-                        @getPosition(blog.Position)
-                    </div>
-                    <div class="data-date_public">
-                        @blog.DatePublic
-                    </div>
-                    <div class="data-edit">
-                        @Html.ActionLink("Edit", "BlogCreateEdit", null, new { id = blog.Id }, new { @class = "btn-Edit" })
-                    </div>
-                    <div class="data-delete">
-                        @Html.ActionLink("Delete", "BlogDelete", new { id = blog.Id }, new { @class = "btn-Delete" })
-                    </div>
-                </li>
-            }
-        </ul>
-    </div>
-</div>
 
-@functions{
-    public string getPosition(List<bool> listPosition)
-    {
-        List<string> listPositionByString = new List<string>();
-        int index = 0;
-        foreach (var postion in ViewData["listPostion"] as List<Postion>)
-        {
-            if (listPosition[index])
-            {
-                listPositionByString.Add(postion.Name);
-            }
-            index++;
-        }
-        string result = "";
-        result += listPositionByString[0];
-        for (int i = 1; i < listPositionByString.Count; i++)
-        {
-            result += ", " + listPositionByString[i];
-        }
-        return result;
-    }
-    public string getCategory(int id)
-    {
-        string result = "";
-        foreach (Category category in ViewData["listCategory"] as IList<Category>)
-        {
-            if (id == category.Id)
-            {
-                result = category.Name;
-            }
-        }
-        return result;
-    }
-    public string getPosition(List<int> listPosition)
-    {
-        string result = "";
-        for (int i = 0; i < listPosition.Count; i++)
-        {
-            foreach (Postion postion in ViewData["listPostion"] as IList<Postion>)
-            {
-                if (listPosition[i] == postion.Id)
-                {
-                    result += postion.Name + " ";
-                }
-            }
-        }
-        return result;
-    }
-}
 

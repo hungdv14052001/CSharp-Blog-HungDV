@@ -5,50 +5,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.UI;
 
 namespace CShap_Blog_HungDV.Controllers
 {
     public class BlogController : Controller
     {
         private DAO dao = new DAO();
-        IList<Blog> listBlog = new DAO().getListBlog();
-        List<Category> listCategory = new List<Category>
-        {
-            new Category(0, "Kinh tế"),
-            new Category(1, "Thế Giới"),
-            new Category(2, "Chính Trị"),
-            new Category(3, "Showbit"),
-            new Category(4, "Thời Sự"),
-            new Category(5, "Giải Trí"),
-            new Category(6, "Kinh Doanh"),
-            new Category(7, "Giáo Dục"),
-            new Category(8, "Thể Thao"),
-            new Category(9, "Thể Thao"),
-            new Category(10, "Thể Thao"),
-            new Category(11, "Thể Thao")
-        };
-        List<Postion> listPostion = new List<Postion>
-        {
-            new Postion(1, "Việt Nam"),
-            new Postion(2, "Châu Á"),
-            new Postion(3, "Châu Âu"),
-            new Postion(4, "Châu Mỹ"),
-        };
+        
+        List<Category> listCategory = new EnumList().ListCategory;
+        List<Postion> listPostion = new EnumList().ListPostion;
 
         /// <summary>
-        /// functon set View for BlogList.cshtml
+        /// set View for BlogList
         /// </summary>
         /// <returns>View() of BlogList</returns>
         public ActionResult BlogList()
         {
             ViewData["listCategory"] = listCategory;
             ViewData["listPostion"] = listPostion;
-            ViewData["listBlog"] = listBlog;
-            return View();
+            List<Blog> listBlog = dao.getListBlog();
+            return View(listBlog);
         }
+
+
         /// <summary>
-        /// functon set View for BlogCreateEdit.cshtml
+        /// set View for BlogCreateEdit
         /// </summary>
         /// <param name="id"></param>
         /// <returns>View(blog)</returns>
@@ -58,7 +40,7 @@ namespace CShap_Blog_HungDV.Controllers
             var blog = new Blog();
             if (id != 0)
             {
-                blog= listBlog.Where(b => b.Id == id).FirstOrDefault();
+                blog = dao.getBlogById(id);
             }
             else
             {
@@ -74,27 +56,42 @@ namespace CShap_Blog_HungDV.Controllers
             ViewData["blog"] = blog;
             return View(blog);
         }
+
         /// <summary>
-        /// functon to use when user Create Blog or Edit Blog
+        /// use when user Create Blog or Edit Blog
         /// </summary>
         /// <param name="blog"></param>
         /// <returns>RedirectToAction("BlogList")</returns>
         [HttpPost]
         public ActionResult BlogCreateEdit(Blog blog)
         {
+            bool resultSubmit = false;
             if (blog.Id==0)
             {
-                dao.addBlog(blog);
+                if (dao.addBlog(blog))
+                {
+                    resultSubmit = true;
+                }
             }
             else
             {
-                dao.updateBlog(blog);
+                if (dao.updateBlog(blog))
+                {
+                    resultSubmit = true;
+                }
             }
-            return RedirectToAction("BlogList");
+            if (resultSubmit)
+            {
+                return RedirectToAction("BlogList");
+            }
+            else
+            {
+                return BlogCreateEdit(blog);
+            }
         }
 
         /// <summary>
-        /// functon set View for BlogCreateEdit.cshtml
+        /// set View for BlogCreateEdit
         /// </summary>
         /// <param name="keySearch"></param>
         /// <returns></returns>
@@ -112,14 +109,13 @@ namespace CShap_Blog_HungDV.Controllers
         }
 
         /// <summary>
-        /// function to delete Blog from DataBase
+        /// delete Blog from DataBase
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult BlogDelete(int id)
         {
-            var blog = listBlog.Where(b => b.Id == id).FirstOrDefault();
-            dao.deleteBlog(blog);
+            dao.deleteBlogById(id);
             return RedirectToAction("BlogList");
         }
     }

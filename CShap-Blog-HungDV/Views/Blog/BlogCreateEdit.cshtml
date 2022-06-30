@@ -60,22 +60,6 @@
             <input type="submit" value="Submit" class="btnSubmit" />
             <button type="button" class="btnClear">Clear</button>
         </div>
-
     </div>
-}
-
-@functions{
-    bool getSelected(int id)
-    {
-        var currentBlog = ViewData["blog"] as Blog;
-        if (id == currentBlog.Category)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }
 
